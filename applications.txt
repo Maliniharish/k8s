@@ -1,0 +1,11 @@
+applications tiers:3 tiers
+frontend :angular(port:8000,4000,3000),reactjs->npm(node package manager)
+backend:java,python
+       :java->maven(mvn)-jdk,jre;gradel(gradel)-jdk,jre
+	   :python->pip
+
+DB :sql,oracle,mysql
+
+middleware:
+webserver(port:80,443)->nginx,apache,httpd (static content,send data directly,entrypoint)
+appserver(port:8080)->apachetomcat,weblogic,jboss

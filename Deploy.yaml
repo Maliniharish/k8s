@@ -1,6 +1,33 @@
 apiversion: apps/v1
 kind: Deployment
 metadata:
-  name: malini
+  name: malini-deployment
+  namespace: test
+  labels:
+    environment: dev
+    app: frontendapp
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels: 
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        version: v1
+    spec:
+      containers: 
+      - name: abc
+        image: nginx
+        command: []
+        args: []
+        ports:
+          - containerPort: 80
+        imagePullPolicy: Always 
+        restartPolicy: Always #always onFailure never
+        livenessProbe:
+        readinessProbe:
+        
+          
   
 
