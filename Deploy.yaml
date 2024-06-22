@@ -26,7 +26,31 @@ spec:
         imagePullPolicy: Always 
         restartPolicy: Always #always onFailure never
         livenessProbe:
-        readinessProbe:
+          httpGet: 
+            path: /health 
+            port: 80
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 30
+          successThreshold: 5
+          failureThreshold: 10
+          terminationGracePeriodSeconds: 10
+        readinessProbe: 
+          httpGet: 
+            path: /health 
+            port: 80
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 30
+          successThreshold: 5
+          failureThreshold: 10
+          terminationGracePeriodSeconds: 10
+          
+       
+            
+       
         
           
   
