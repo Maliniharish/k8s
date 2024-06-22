@@ -91,7 +91,22 @@ spec:
           requests:
             memory: "16Gb"
             cpu: "1.2m"
-          
+---
+apiversion: v1
+kind: services
+metadata:
+  name: harish-svc
+  namespace: test
+spec:
+  selector:
+    version: v1 #label
+  type: ClusterIP # ClusterIP,nodePort,loadBalancer,externalName
+  ports:
+  - port: 80 #incomingport
+    targetPort: 80 #to which the pod is running
+  
+  
+  
        
             
        
