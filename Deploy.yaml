@@ -47,6 +47,50 @@ spec:
           successThreshold: 5
           failureThreshold: 10
           terminationGracePeriodSeconds: 10
+        resources:
+          limits:
+            memory: "32Gb"
+            cpu: "1.2m"
+          requests:
+            memory: "16Gb"
+            cpu: "1.2m"
+      - name: xyz
+        image: filebeat #to push logs to elastic search storage
+        command: []
+        args: []
+        ports:
+          - containerPort: 88
+        imagePullPolicy: Always 
+        restartPolicy: Always #always onFailure never
+        livenessProbe:
+          httpGet: 
+            path: /health 
+            port: 88
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 30
+          successThreshold: 5
+          failureThreshold: 10
+          terminationGracePeriodSeconds: 10
+        readinessProbe: 
+          httpGet: 
+            path: /health 
+            port: 88
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 30
+          successThreshold: 5
+          failureThreshold: 10
+          terminationGracePeriodSeconds: 10
+        resources:
+          limits:
+            memory: "32Gb"
+            cpu: "1.2m"
+          requests:
+            memory: "16Gb"
+            cpu: "1.2m"
           
        
             
