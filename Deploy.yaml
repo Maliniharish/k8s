@@ -104,6 +104,39 @@ spec:
   ports:
   - port: 80 #incomingport
     targetPort: 80 #to which the pod is running
+---
+apiversion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: thooriga-svc
+  namespace: test
+spec:
+  scaleTargetRef: 
+    apiversion: apps/v1
+    kind: Deployment
+    name: malini-deployment
+  minReplicas: 1
+  maxReplicas: 3
+# targetCpuUtilizationPercentage: 50 #percentagevalue,no longer supported for V2
+# targetMemoryUtilizationPercentage: 50 #percentagevalue,no longer supported for V2
+  metrics: 
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50 # percentagevalue
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 50 # percentagevalue
+  
+    
+  
+    
+
   
   
   
